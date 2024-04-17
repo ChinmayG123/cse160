@@ -1,5 +1,8 @@
 import * as THREE from 'three';
+import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
 import {OBJLoader} from 'three/addons/loaders/OBJLoader.js';
+import {MTLLoader} from 'three/addons/loaders/MTLLoader.js';
+
 
 
 function main() {
@@ -58,34 +61,42 @@ function main() {
 
 
 	{
+
+
+		const mtlLoader = new MTLLoader();
+		const objLoader = new OBJLoader();
+		mtlLoader.load('IronMan.mtl', (mtl) => {
+			mtl.preload();
+			// for (const material of Object.values(mtl.materials)) {
+			// 	material.side = THREE.DoubleSide;
+			// }
+			objLoader.setMaterials(mtl); // You're missing objLoader instantiation
+			objLoader.load('IronMan.obj', (root) => {
+				root.scale.set(0.01, 0.01, 0.01);
+				root.position.set(-3.5, -1, 0);
+				root.rotation.y = Math.PI / 4.5;
+				scene.add(root);
+			});
+		});
+		
+		  
+		// // Load the OBJ model
 		// const objLoader = new OBJLoader();
 		// objLoader.load('IronMan.obj', (root) => {
-
-		//   root.scale.set(0.01, 0.01, 0.01); 
-		//   root.position.set(-3.5, -1, 0);
-		//   root.rotation.y = Math.PI / 4; 
-
-		//   scene.add(root);
+		// 	root.scale.set(0.01, 0.01, 0.01);
+		// 	root.position.set(-3.5, -1, 0);
+		// 	root.rotation.y = Math.PI / 4.5;
+		// 	// root.traverse(child => {
+		// 	//     if (child instanceof THREE.Mesh) {
+		// 	//         child.material = ironManMaterial; // Apply the texture
+		// 	//     }
+		// 	// });
+		// 	scene.add(root);
 		// });
-
-
-		// Load the OBJ model
-		const objLoader = new OBJLoader();
-		objLoader.load('IronMan.obj', (root) => {
-			root.scale.set(0.01, 0.01, 0.01);
-			root.position.set(-3.5, -1, 0);
-			root.rotation.y = Math.PI / 4.5;
-			// root.traverse(child => {
-			//     if (child instanceof THREE.Mesh) {
-			//         child.material = ironManMaterial; // Apply the texture
-			//     }
-			// });
-			scene.add(root);
-		});
 		
 	}
 
-	
+	 
 
 
 	function makeInstance( geometry, material, x ) {
