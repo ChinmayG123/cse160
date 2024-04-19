@@ -68,7 +68,7 @@ function main() {
 	 
 
 
-	function makeInstance( geometry, material, x ) {
+	function makeCubeInstance( geometry, material, x ) {
 
 		const cube = new THREE.Mesh( geometry, material );
 		scene.add( cube );
@@ -80,11 +80,29 @@ function main() {
 	}
 
 
+
+	function makeSphereInstance(geometry, material, x, isSphere = false) {
+		let mesh;
+		if (isSphere) {
+			mesh = new THREE.Mesh(new THREE.SphereGeometry(0.5, 32, 32), material);
+		} else {
+			mesh = new THREE.Mesh(geometry, material);
+		}
+		scene.add(mesh);
+		mesh.position.x = x;
+		return mesh;
+	}
+	
 	const cubes = [
-		makeInstance( geometry, material, 1 ),
-		makeInstance( geometry, new THREE.MeshPhongMaterial({ color: 0x8844aa }), -1 ),
-		makeInstance( geometry, new THREE.MeshPhongMaterial({ color: 0xaa8844 }) , 3 ),
+		makeCubeInstance( geometry, material, 1 ),
+		// makeInstance( geometry, new THREE.MeshPhongMaterial({ color: 0x8844aa }), -1 ),
+		
+		makeSphereInstance(geometry, new THREE.MeshPhongMaterial({ color: 0x44aa88 }), -1, true);
+		makeCubeInstance( geometry, new THREE.MeshPhongMaterial({ color: 0xaa8844 }) , 3 ),
 	];
+
+	
+	// Create a sphere at position 5
 
 
 
