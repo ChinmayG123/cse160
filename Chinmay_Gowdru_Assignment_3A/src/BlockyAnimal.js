@@ -19,11 +19,15 @@ var FSHADER_SOURCE = `
   precision mediump float;
   varying vec2 v_UV;
   uniform vec4 u_FragColor;
+  uniform sampler2D u_Sampler0;
   void main() {
     gl_FragColor = u_FragColor;
     gl_FragColor = vec4(v_UV, 1.0, 1.0);
-  }`
+    gl_FragColor = texture2D(u_Sampler0, v_UV);
+  }
+  `
 
+  
 
 let canvas;
 let gl;
@@ -104,8 +108,76 @@ function connectVariablesToGLSL() {
     return;
   }
 
+  
+  // Get the storage location of u_ProjectionMatrix
+  u_ProjectionMatrix = gl.getUniformLocation(gl.program, 'u_ProjectionMatrix');
+  if (!u_ProjectionMatrix) {
+    console.log('Failed to get the storage location of u_ProjectionMatrix');
+    return;
+  }
+  
+  
+  // Get the storage location of u_Sampler0
+  u_Sampler0 = gl.getUniformLocation(gl.program, 'u_Sampler0');
+  if (!u_Sampler0) {
+    console.log('Failed to get the storage location of u_Sampler0');
+    return;
+  }
+
   var identityM = new Matrix4();
   gl.uniformMatrix4fv(u_ModelMatrix, false, identityM.elements);
+
+
+
+  // Create perspective matrix
+  var projMatrix = new Matrix4();
+  gl.uniformMatrix4fv(u_ProjectionMatrix, false, projMatrix.elements);
+
+  // Create view matrix
+  var viewMatrix = new Matrix4();
+  gl.uniformMatrix4fv(u_ViewMatrix, false, viewMatrix.elements);
+
+}
+
+
+function initTextures(gl, n) {
+
+  var image = new Image();
+  if (!image) {
+    console.log('Failed to create the image object');
+    return false;
+  }
+
+  image.onload = function(){ sendImageToTEXTURE0(image);};
+
+  image.src = 'sky.jpg';
+
+  // add more texture loading
+
+
+  return true;
+}
+
+function sendImageToTEXTURE0(image) {
+  var texture = gl.createTexture();
+  if (!texture) {
+    console.log('Failed to create the texture object');
+    return false;
+  }
+
+  gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, 1);
+
+  gl.activeTexture(gl.TEXTURE0);
+
+  gl.bindTexture(gl.TEXTURE_2D, texture);
+
+  gl.textParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+
+  gl.textImage2D(gl.TEXTURE_2D, 0, gl.RGB, gl.RGB, gl.UNSIGNED_BYTE, image);
+
+  gl.uniform1i(u_Sampler0, 0);
+
+  console.log('finished loadTexture');
 
 
 }
@@ -198,13 +270,15 @@ function addActionsForHTMLUI() {
 function main() {
   
   // set up canvas and gl variables
-  setupWebGL();
+  setupWebGL(); 
 
   // set up GLSL shader programs and connect GLSL variables
   connectVariablesToGLSL();
 
   // set up actions for the html ui elements
   addActionsForHTMLUI();
+
+  initTextures();
 
   // Register function (event handler) to be called on a mouse press
   canvas.onmousedown = click;
@@ -471,6 +545,15 @@ function renderScene() {
   var translationMatrix = new Matrix4().translate(0, g_translationY, 0); 
   var transformedGlobalRotMat = new Matrix4(scaledGlobalRotMat).multiply(translationMatrix);
   gl.uniformMatrix4fv(u_GlobalRotateMatrix, false, transformedGlobalRotMat.elements);
+
+
+
+  // let u_ViewMatrix = gl.getUniformLocation(gl.program, "u_ViewMatrix");
+  // gl.uniformMatrix4fv(u_ViewMatrix, false, ViewMatrix.elements);
+
+  // let u_projectionMatrix = gl.getUniformLocation(gl.program, "u_projectionMatrix");
+  // gl.uniformMatrix4fv(u_projectionMatrix, false, camera.projectionMatrix.elements);
+
 
   gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
   gl.clear(gl.COLOR_BUFFER_BIT);
