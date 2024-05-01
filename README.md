@@ -6,5 +6,7 @@
 
 [Assignment 2](https://chinmayg123.github.io/cse160/Chinmay_Gowdru_Assignment_2/src/BlockyAnimal.html)
 
+[Assignment 3A](https://chinmayg123.github.io/cse160/Chinmay_Gowdru_Assignment_3A/src/BlockyAnimal.html)
+
 [Assignment 5A](https://chinmayg123.github.io/cse160/Chinmay_Gowdru_Assignment_5/src/asgn5a.html)
 
