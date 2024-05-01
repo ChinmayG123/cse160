@@ -16,6 +16,17 @@ class Camera {
       // this.projectionMatrix = new Matrix4();
       // this.projectionMatrix.setPerspective(this.fov, aspectRatio, near, far);
 
+
+      this.viewMatrix = new Matrix4();
+      this.updateView();
+
+      this.fov = 60;
+      this.aspectRatio = canvas.width / canvas.height;
+      this.near = 0.1;
+      this.far = 1000;
+      this.projectionMatrix = new Matrix4();
+      this.projectionMatrix.setPerspective(this.fov, this.aspectRatio, this.near, this.far);
+
     }
 
     forward(){

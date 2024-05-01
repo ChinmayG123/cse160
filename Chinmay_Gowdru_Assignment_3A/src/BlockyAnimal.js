@@ -654,10 +654,18 @@ function renderScene() {
                     
   gl.uniformMatrix4fv(u_ViewMatrix, false, viewMat.elements);
 
+
+  
+
   // Apply rotation to the object
   var mousex = new Matrix4().rotate(g_globalRotationX, 0, 1, 0);
   var mousey = new Matrix4().rotate(g_globalRotationY, 1, 0, 0);
   globalRotMat = new Matrix4(mousex).multiply(mousey);
+
+  
+  // Apply the global angle rotation
+  var globalAngleRotMat = new Matrix4().rotate(180, 0, 1, 0); // Rotate around the y-axis by 180 degrees
+  globalRotMat.multiply(globalAngleRotMat);
 
   // Apply the global angle rotation
   var globalAngleRotMat = new Matrix4().rotate(g_globalAngle, 0, 1, 0);
@@ -675,18 +683,48 @@ function renderScene() {
 
 
 
-  // let u_ViewMatrix = gl.getUniformLocation(gl.program, "u_ViewMatrix");
-  // gl.uniformMatrix4fv(u_ViewMatrix, false, ViewMatrix.elements);
-
-  // let u_projectionMatrix = gl.getUniformLocation(gl.program, "u_projectionMatrix");
-  // gl.uniformMatrix4fv(u_projectionMatrix, false, camera.projectionMatrix.elements);
-
-
   gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
   gl.clear(gl.COLOR_BUFFER_BIT);
 
 
   
+  var cube = new Cube();
+  cube.matrix.translate(-1,-4,-1);
+  cube.matrix.scale(0.5,2.5,0.5);
+  cube.matrix.translate(-0.5,0.5,-0.5);
+  // cube.color = [0.52,0.8,0.58,1];
+  cube.textureNum = -1;
+  cube.render();
+
+  
+  var cube1 = new Cube();
+  cube1.matrix.translate(1,-4,-1);
+  cube1.matrix.scale(0.5,2.5,0.5);
+  cube1.matrix.translate(-0.5,0.5,-0.5);
+  // cube1.color = [0.52,0.8,0.58,1];
+  cube1.textureNum = -1;
+  cube1.render();
+
+  
+  var cube2 = new Cube();
+  cube2.matrix.translate(1,-4,1);
+  cube2.matrix.scale(0.5,2.5,0.5);
+  cube2.matrix.translate(-0.5,0.5,-0.5);
+  // cube2.color = [0.52,0.8,0.58,1];
+  cube2.textureNum = -1;
+  cube2.render();
+
+  
+  
+  var cube3 = new Cube();
+  cube3.matrix.translate(-1,-4,1);
+  cube3.matrix.scale(0.5,2.5,0.5);
+  cube3.matrix.translate(-0.5,0.5,-0.5);
+  // cube3.color = [0.52,0.8,0.58,1];
+  cube3.textureNum = -1;
+  cube3.render();
+
+
   // floor
   var floor = new Cube();
   floor.color = [1.0, 0.0, 0.0, 1.0];
@@ -840,7 +878,7 @@ function renderScene() {
 
   var topbody = new Cube();
   topbody.color = [0.0, 0.0, 0.0, 1.0];
-  // topbody.textureNum = -1;
+  // topbody.textureNum = 0;
   topbody.matrix.translate(-0.4, 0, 0);
   topbody.matrix.scale(0.8, 0.3, 0.5);
   topbody.render();
