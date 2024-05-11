@@ -738,9 +738,9 @@ function drawWall(x, y, i) {
   var wall = new Cube();
   wall.textureNum = 2;
   wall.matrix.scale(0.25, 0.25, 0.25);
-  wall.matrix.translate(x - 16, -1.9, y - 16);
+  wall.matrix.translate(x - 16, -1.3, y - 16);
   wall.matrix.translate(3, -1.5 + i * 1.0, 6);
-  wall.render();
+  wall.renderfast();
 }
 
 let left = 0;
@@ -798,7 +798,7 @@ function keydown(ev) {
     
   } else if(ev.keyCode == 88){  // X
     if (g_map[x + horizontal][z + vertical] == 0) {
-      g_map[x + horizontal][z + vertical] += 6;
+      g_map[x + horizontal][z + vertical] += 4;
     
     } 
   } else if (ev.keyCode == 90) {  // Z
