@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Change a point color</title>
+  </head>
+
+  <body onload="main()">
+
+    <p>Chinmay Gowdru<br>
+      cgowdru@ucsc.edu
+    </p>
+    <canvas id="webgl" width="400" height="400">
+    Please use a browser that supports "canvas"
+    </canvas>
+    <img src="maze.jpg" alt="house" style="width:400px;height:400px;">
+    <p>The bricks are formatted like a maze. You can add 6 blocks at once by clicking X and remove blocks by clicking Z.</p>
+
+    <p id="numdot"> XXX </p>
+    
+    <button type="button" id="clearButton">Clear </button>
+
+    Poke Animation:
+    <button type = "button" id="animationPokeOffButton">OFF</button>
+    <br>
+
+    <p>
+    Camera Angle <input type="range" min="0" max="360" value="0" class="slider" id="angleSlide">
+
+
+    <p>
+    Right Paw <input type="range" min="0" max="30" value="0" class="slider" id="rightPawSlide">
+    
+    Animation:
+    <button type = "button" id="animationRightPawOnButton">ON</button>
+    <button type = "button" id="animationRightPawOffButton">OFF</button>
+
+    <p>
+    Right Arm <input type="range" min="0" max="90" value="0" class="slider" id="rightArmSlide">
+    
+    Animation:
+    <button type = "button" id="animationRightArmOnButton">ON</button>
+    <button type = "button" id="animationRightArmOffButton">OFF</button>
+
+
+    <p>
+    Right Forearm <input type="range" min="-20" max="0" value="0" class="slider" id="rightForeArmSlide">
+    
+    Animation:
+    <button type = "button" id="animationForeaArmOnButton">ON</button>
+    <button type = "button" id="animationForeaArmOffButton">OFF</button>
+  
+    <p>
+    Right Hand <input type="range" min="-45" max="0" value="0" class="slider" id="rightHandSlide">
+    
+    Animation:
+    <button type = "button" id="animationRightHandOnButton">ON</button>
+    <button type = "button" id="animationRightHandOffButton">OFF</button>
+  
+    <p>
+    Left Hand <input type="range" min="-45" max="0" value="0" class="slider" id="leftHandSlide">
+    
+    Animation:
+    <button type = "button" id="animationLeftHandOnButton">ON</button>
+    <button type = "button" id="animationLeftHandOffButton">OFF</button>
+      
+    <p>
+    Left Arm <input type="range" min="0" max="160" value="0" class="slider" id="leftArmSlide">
+    
+    Animation:
+    <button type = "button" id="animationLeftArmOnButton">ON</button>
+    <button type = "button" id="animationLeftArmOffButton">OFF</button>
+
+    <script src="../lib/webgl-utils.js"></script>
+    <script src="../lib/webgl-debug.js"></script>
+    <script src="../lib/cuon-utils.js"></script>
+    <script src="../lib/cuon-matrix-cse160.js"></script>
+    <!-- <script src="../lib/cuon-matrix.js"></script> -->
+    <script src="Circle.js"></script>
+    <script src="Triangle.js"></script>
+    <script src="Cone.js"></script>
+    <script src="Points.js"></script>
+    <script src="Cube.js"></script>
+    <script src="Camera.js"></script>
+    <script src="BlockyAnimal.js"></script>
+
+  </body>
+</html>
