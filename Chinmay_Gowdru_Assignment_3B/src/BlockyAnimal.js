@@ -740,7 +740,7 @@ function drawWall(x, y, i) {
   wall.matrix.scale(0.25, 0.25, 0.25);
   wall.matrix.translate(x - 16, -1.3, y - 16);
   wall.matrix.translate(3, -1.5 + i * 1.0, 6);
-  wall.renderfast();
+  wall.renderfaster();
 }
 
 let left = 0;

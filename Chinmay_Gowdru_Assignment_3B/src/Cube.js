@@ -116,7 +116,7 @@ class Cube {
   }
 
   
-  renderfast() {
+  renderfaster() {
     var rgba = this.color;
 
     gl.uniform1i(u_whichTexture, this.textureNum);
@@ -160,23 +160,4 @@ class Cube {
   }
 
   
-  renderfaster() {
-    var rgba = this.color;
-
-    gl.uniform1i(u_whichTexture, this.textureNum);
-
-    gl.uniform4f(u_FragColor, rgba[0], rgba[1], rgba[2], rgba[3]);
-    
-    gl.uniformMatrix4fv(u_ModelMatrix, false, this.matrix.elements);
-
-    if (g_vertexBuffer == null) {
-      initTriangle3D();
-    }
-
-    // Write date into the buffer object
-    // gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(this.cubeVerts), gl.DYNAMIC_DRAW);
-    gl.bufferData(gl.ARRAY_BUFFER, this.cubeVerts32, gl.DYNAMIC_DRAW);
-
-    drawTriangle3D(gl.TRIANGLES, 0, 36);
-  }
 }
