@@ -8,5 +8,7 @@
 
 [Assignment 3A](https://chinmayg123.github.io/cse160/Chinmay_Gowdru_Assignment_3A/src/BlockyAnimal.html)
 
+[Assignment 3B](https://chinmayg123.github.io/cse160/Chinmay_Gowdru_Assignment_3B/src/BlockyAnimal.html)
+
 [Assignment 5A](https://chinmayg123.github.io/cse160/Chinmay_Gowdru_Assignment_5/src/asgn5a.html)
 
