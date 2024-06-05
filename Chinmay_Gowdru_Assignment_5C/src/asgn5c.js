@@ -445,7 +445,7 @@ function main() {
 	const sunraysCount = 20; // Number of sunrays
 	const sunraysMaterial = new THREE.MeshBasicMaterial({ color: 0xffff00, side: THREE.DoubleSide }); // Render both sides of the plane
 	const sunraysRadius = 5; // Distance of the sunrays from the sun
-	const sunraysWidth = 5; // Width of the sunrays
+	const sunraysWidth = 3; // Width of the sunrays
 	const sunraysHeight = 10; // Height (thickness) of the sunrays
 	const sunrayMeshes = []; // Array to store sunray meshes
 

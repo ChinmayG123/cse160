@@ -16,3 +16,5 @@
 
 [Assignment 5B](https://chinmayg123.github.io/cse160/Chinmay_Gowdru_Assignment_5B/src/asgn5b.html)
 
+[Assignment 5C](https://chinmayg123.github.io/cse160/Chinmay_Gowdru_Assignment_5C/src/asgn5c.html)
+
